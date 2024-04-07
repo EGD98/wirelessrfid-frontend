@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="menu">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark fondogt" >
+    <!-- Navbar content -->
+    <a class="navbar-brand" th:href="${url}">
+        <img th:src="${url + 'images/SCM-RFID.PNG'}" width="120" height="120"
+             class="d-inline-block align-top rounded img-fluid" alt="SCMRFID">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto ">
+            <li class="nav-item <? echo $active?> ">
+                <a class="nav-link" th:href="${url}"><strong>Inicio</strong>
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item <? echo $activer?>">
+                <a class="nav-link" th:href="${url+'getInto'}"> <strong>Ingresa</strong></a>
+            </li>
+
+
+            <li class="nav-item <? echo $activec?>">
+                <a class="nav-link" th:href="${url+'contact'}"><strong>Contacto</strong></a>
+            </li>
+        </ul>
+
+        <a class="navbar-brand" href="#">
+            <img th:src="${url +'images/aragon.jpg'}" width="40" height="40"
+                 class="d-inline-block align-top rounded img-fluid mx-2" alt="fes aragon">
+        </a>
+    </div>
+</nav>
+</div>
+</body>
+</html>

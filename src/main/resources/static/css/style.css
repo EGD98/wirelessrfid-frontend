@@ -1,0 +1,226 @@
+.fondogt {
+    background: linear-gradient(90deg, #00aaee, #c90469);
+    background-size: 400% 300%;
+    animation: BgGradient 10s ease infinite;
+}
+
+
+/*
+.fondogt {
+    /* font-family: Helvetica, san-serif;*
+    background: -webkit-linear-gradient(90deg, #00aaee 10%, #DD2476 90%);
+    /* Chrome 10+, Saf5.1+ *
+    background: -moz-linear-gradient(90deg, #00aaee 10%, #DD2476 90%);
+    /* FF3.6+ *
+    background: -ms-linear-gradient(90deg, #00aaee 10%, #DD2476 90%);
+    /* IE10 *
+    background: -o-linear-gradient(90deg, #00aaee 10%, #DD2476 90%);
+    /* Opera 11.10+ *
+    background: linear-gradient(90deg, #00aaee 10%, #DD2476 90%);
+    /* W3C *
+}*/
+
+.marco {
+    border: 2px cyan solid;
+    border-radius: 10px;
+}
+
+.cambio {
+    color: #00aaee;
+    font-weight: bold;
+    text-shadow: 2px 2px cyan;
+}
+
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 2px solid magenta;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.inferior {
+    border-bottom: 2px #DD2476 solid;
+    border-radius: 10px;
+}
+
+.sai {
+    color: #00aaee;
+}
+
+h5 {
+    color: #DD2476;
+    text-shadow: 1px 1px rgb(255, 0, 13);
+}
+
+.color {
+    color: blanchedalmond;
+    font-family: cursive;
+}
+
+
+/*.fondogt {
+    background: #008080;
+    border: 2px solid #999999;
+}*/
+
+@keyframes BgGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #e7e7e7;
+}
+.wrapper {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    margin: 3% auto;
+    box-shadow: 2px 18px 70px 0px #9D9D9D;
+    overflow: hidden;
+}
+
+.login-text {
+    width: 800px;
+    height:450px;
+    background: linear-gradient(to left, #ab68ca, #de67a3);
+    position: absolute;
+    top: -300px;
+    box-sizing: border-box;
+    padding: 6%;
+    transition: all 0.5s ease-in-out;
+    z-index: 11;
+}
+
+.text {
+    margin-left: 20px;
+    color: #fff;
+    display: none;
+    transition: all 0.5s ease-in-out;
+    transition-delay: 0.3s;
+
+    a, a:visited {
+        font-size: 36px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        display: block;
+    }
+
+    hr {
+        width: 10%;
+        float: left;
+        background-color: #fff;
+        font-size: 16px;
+    }
+
+    input {
+        margin-top: 30px;
+        height: 40px;
+        width: 300px;
+        border-radius: 2px;
+        border: none;
+        background-color: #444;
+        opacity: 0.6;
+        outline: none;
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    input[type=text] {
+        margin-top: 60px;
+    }
+
+    button {
+        margin-top: 60px;
+        height: 40px;
+        width: 140px;
+        outline: none;
+    }
+
+    .login-btn {
+        background: #fff;
+        border: none;
+        border-radius: 2px;
+        color: #696a86;
+    }
+
+    .signup-btn {
+        background: transparent;
+        border: 2px solid #fff;;
+        border-radius: 2px;
+        color: #fff;
+        margin-left: 30px;
+    }
+}
+
+.cta {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #696a86;
+    border: 2px solid #fff;
+    position: absolute;
+    bottom: -30px;
+    left: 370px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    z-index: 11;
+}
+
+.call-text {
+    background-color: #fff;
+    width: 800px;
+    height: 450px;
+    position: absolute;
+    bottom: 0;
+    padding: 10%;
+    box-sizing: border-box;
+    text-align: center;
+
+    h1 {
+        font-size: 42px;
+        margin-top: 10%;
+        color: #696a86;
+
+        span {
+            color: #333;
+            font-weight: bolder;
+
+        }
+    }
+
+    button {
+        height: 40px;
+        width: 180px;
+        border: none;
+        border-radius: 20px;
+        background: linear-gradient(to left, #ab68ca, #de67a3);
+        color: #fff;
+        font-weight: bolder;
+        margin-top: 30px;
+        cursor: pointer;
+        outline: none;
+    }
+}
+
+.show-hide {
+    display: block;
+}
+
+.expand {
+    transform: translateY(300px);
+}

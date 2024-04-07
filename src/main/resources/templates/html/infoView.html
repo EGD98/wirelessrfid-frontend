@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: head}">
+</head>
+<body>
+<div th:insert="~{fragments/menu :: menu}"></div>
+<div class="container">
+<div class="row">
+
+    <div class="col-12">
+
+        <div class="card text-start|center|end mt-4 ">
+
+            <div class="card-body">
+                <h4 class="card-title text-center cambio">Bienvenido al Sistema</h4>
+                <hr>
+                <p class="card-text text-center">
+                    <b>Registra a un usuario o ingresa al Sistema Microcontrolado por RFID </b>
+                </p>
+                <p class="text-center"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container  d-flex">
+        <section class="mt-3">
+            <div class="row ">
+                <div class="col-12 col-sm-6 ">
+                    <div class="marco">
+                        <article>
+                            <h5 class=" text-center inferior">¿QUÉ ES SCM-RFID ?</h5>
+                            <p>
+                                SMC-RFID es una plataforma creada por estudiantes desarrolladores web de la unam con el
+                                proposito de envolver a la comunidad universitaria en el nuevo mundo del internet de las
+                                cosas, ya que cada vez va ganando mas terreno y será la tecnología del futuro.
+                            </p>
+                        </article>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-6 ">
+                    <div class=" pb-4 marco">
+                        <article>
+                            <h5 class="text-center inferior">¿PARA QUE SIRVE SCM-RFID?</h5>
+                            <p>
+                                SMC-RFID sirve para acceder de forma remota al control de acceso de las distintas areas
+                                o sitios de un edificio de manera que se tenga un control de quien entra y quien sale.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-12 col-sm-6 ">
+                    <div class="pb-2 marco">
+                        <article>
+                            <h5 class="text-center inferior">¿CÓMO SE USA SCM-RFDI?</h5>
+                            <p>¡Es facil! solo tienes que registrarte en el sitio crear tu usuario con tu correo y listo
+                                tendras acceso a ello, para asi poder administrar tu edificio de forma mas controlada.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 ">
+                    <div class="marco">
+                        <article>
+                            <H5 class="text-center inferior">¿CÓMO FUNCIONA SCM-RFID?</h5>
+                            <p>SMC-RFID recoge tus datos, los almacena en su base de datos y la siguiente ves que entrar
+                                comparara tu huella  previamente registrada controlando asi el acceso a distintos sitios
+                                y registrando las entradas.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+</div>
+</div>
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+</html>
