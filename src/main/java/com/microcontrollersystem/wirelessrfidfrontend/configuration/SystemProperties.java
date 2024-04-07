@@ -10,4 +10,5 @@ import org.springframework.stereotype.Component;
 public class SystemProperties {
     private String url;
     private String iconUrl;
+    private String urlBackend;
 }

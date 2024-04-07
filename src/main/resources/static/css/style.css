@@ -95,7 +95,9 @@ body {
 .login-text {
     width: 800px;
     height:450px;
-    background: linear-gradient(to left, #ab68ca, #de67a3);
+    background: linear-gradient(90deg, #00aaee, #c90469);
+    background-size: 400% 300%;
+    animation: BgGradient 10s ease infinite;
     position: absolute;
     top: -300px;
     box-sizing: border-box;
