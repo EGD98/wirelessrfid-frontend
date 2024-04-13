@@ -48,8 +48,8 @@ boton.addEventListener('click', function(event) {
         if (data.status == 200) {
             Swal.fire({
               title: 'Peticion Exitosa',
-              text: data,
-              icon: 'error', // Icono (puede ser 'success', 'error', 'warning', 'info' o 'question')
+              text: data.message,
+              icon: 'success', // Icono (puede ser 'success', 'error', 'warning', 'info' o 'question')
               confirmButtonText: 'OK' // Texto del botón de confirmación
             });
         } else {

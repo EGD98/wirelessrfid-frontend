@@ -12,6 +12,14 @@ public class IndexController {
 
     private final SystemProperties systemProperties;
 
+    @GetMapping(value = "/login")
+    public String loginView(Model model) {
+        model.addAttribute("url", systemProperties.getUrl());
+        model.addAttribute("icono", systemProperties.getIconUrl());
+        model.addAttribute("title", "SCM - Index");
+        return "/html/loginView";
+    }
+
     @GetMapping(value = "/index")
     public String indexView(Model model) {
         model.addAttribute("url", systemProperties.getUrl());
