@@ -46,12 +46,7 @@ boton.addEventListener('click', function(event) {
         debugger
         console.log('Datos obtenidos:', data);
         if (data.status == 200) {
-            Swal.fire({
-              title: 'Peticion Exitosa',
-              text: data.message,
-              icon: 'success', // Icono (puede ser 'success', 'error', 'warning', 'info' o 'question')
-              confirmButtonText: 'OK' // Texto del botón de confirmación
-            });
+            location.replace("/index");
         } else {
             Swal.fire({
               title: 'Error',

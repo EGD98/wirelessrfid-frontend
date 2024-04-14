@@ -1,6 +1,8 @@
 package com.microcontrollersystem.wirelessrfidfrontend.controllers;
 
 import com.microcontrollersystem.wirelessrfidfrontend.configuration.SystemProperties;
+import com.microcontrollersystem.wirelessrfidfrontend.models.dto.TokenData;
+import com.microcontrollersystem.wirelessrfidfrontend.services.LoginService;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import java.util.Objects;
 public class IndexController {
 
     private final SystemProperties systemProperties;
+    private final LoginService loginService;
 
     @GetMapping(value = "/login")
     public String loginView(Model model) {
@@ -30,16 +33,17 @@ public class IndexController {
         model.addAttribute("url", systemProperties.getUrl());
         model.addAttribute("icono", systemProperties.getIconUrl());
         model.addAttribute("title", "SCM - Index");
-        Object tokenRetrieve = httpSession.getAttribute("token");
-
-        tokenRetrieve = "admin";
-        if (Objects.isNull(tokenRetrieve)) {
+        try {
+            TokenData token = loginService.validateToken(httpSession);
+            if (Objects.isNull(token)) {
+                return "redirect:login";
+            }
+            log.info(token.toString());
+            model.addAttribute("user", token.getSub());
+            return "/html/indexView";
+        } catch (Exception e){
+            log.error("Fallo la validación del token",e);
             return "redirect:login";
         }
-        log.info(tokenRetrieve.toString());
-
-        model.addAttribute("user", "admin");
-
-        return "/html/indexView";
     }
 }
