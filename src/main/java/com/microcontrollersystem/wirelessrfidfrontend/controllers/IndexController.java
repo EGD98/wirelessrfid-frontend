@@ -2,7 +2,9 @@ package com.microcontrollersystem.wirelessrfidfrontend.controllers;
 
 import com.microcontrollersystem.wirelessrfidfrontend.configuration.SystemProperties;
 import com.microcontrollersystem.wirelessrfidfrontend.models.dto.TokenData;
+import com.microcontrollersystem.wirelessrfidfrontend.models.dto.UserData;
 import com.microcontrollersystem.wirelessrfidfrontend.services.LoginService;
+import com.microcontrollersystem.wirelessrfidfrontend.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -19,6 +22,7 @@ public class IndexController {
 
     private final SystemProperties systemProperties;
     private final LoginService loginService;
+    private final UserService userService;
 
     @GetMapping(value = "/login")
     public String loginView(Model model) {
@@ -38,8 +42,11 @@ public class IndexController {
             if (Objects.isNull(token)) {
                 return "redirect:login";
             }
-            log.info(token.toString());
+            Object tokenRetrieve = httpSession.getAttribute("token");
+            String tokenRetrieveString = tokenRetrieve.toString();
             model.addAttribute("user", token.getSub());
+            List<UserData> userDataList = userService.getUserList( tokenRetrieveString);
+            model.addAttribute("listUser",userDataList);
             return "/html/indexView";
         } catch (Exception e){
             log.error("Fallo la validación del token",e);

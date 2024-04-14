@@ -3,13 +3,11 @@ package com.microcontrollersystem.wirelessrfidfrontend.services;
 import com.google.gson.Gson;
 import com.microcontrollersystem.wirelessrfidfrontend.configuration.SystemProperties;
 import com.microcontrollersystem.wirelessrfidfrontend.models.dto.LoginRequest;
-import com.microcontrollersystem.wirelessrfidfrontend.models.dto.LoginResponse;
+
 import com.microcontrollersystem.wirelessrfidfrontend.models.dto.TokenData;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Base64;
-import java.util.Map;
+
 import java.util.Objects;
 @Slf4j
 @Service
