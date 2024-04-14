@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Saul</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: head}">
 </head>
 <body>
+<!-- Start Menu Gigaticket-->
+<div th:insert="~{fragments/registryUserMenu :: registryUserMenu}"></div>
+<!-- Finish Menu Gigaticket-->
 
+<!-- Start Container-->
+<div class="container pt-5">
+    <br>
+    <div class="row justify-content-center m-3 text-center">
+        <h4> Tienes hasta 50 registros de personal </h4>
+        <h4> ¿Como Administrador te gustaria registrar un Usuario?</h4>
+    </div>
+
+</div>
+<!-- Finish Container-->
+
+<!--table start  -->
+<div class="container ">
+
+    <div class="container-fluid  mt-5 table-responsive-xl">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-3">
+                    <button th:style="'margin:0 !important;'"  class="btn btn-outline-info btn-block m-3  " name="btn-user" id="btn-user">Agregar usuario</button>
+                </div>
+                <div class="col-3 text-center">
+                    <input class="form-control " id="myInput" type="text" placeholder="Search..">
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex  ">
+            <div class="col-xl-12 text-center">
+                <!--//todo mapear la tabla dinamica de personal y agregar las acciones -->
+                <table class="table table-hover table-bordered">
+                    <thead class="text-light text-center fondogt">
+                    <tr class="">
+                        <th>Nombre</th>
+                        <th>UserName</th>
+                        <th>Correo</th>
+                        <th>Tipo de usuario</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody class="text-center" id="tablaA">
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="res" class="text-center">
+
+    </div>
+    <br>
+    <!--boton actualizar start -->
+    <div class="row justify-content-center m-2">
+        <div class="col-sm-3 text-center">
+
+            <div class="form-group">
+                <button  class="btn btn-outline-info btn-lg btn-block m-3  " name="btn-actualizarA" id="btn-actualizarA">Actualizar tabla</button>
+            </div>
+        </div>
+    </div>
+    <!--boton actualizar finish -->
+</div>
+<!-- Table finish -->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
