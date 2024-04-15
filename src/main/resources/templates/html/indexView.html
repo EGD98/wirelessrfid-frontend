@@ -39,10 +39,15 @@
                 <table class="table table-hover table-bordered">
                     <thead class="text-light text-center fondogt">
                     <tr class="">
+                        <th>Id</th>
                         <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
                         <th>UserName</th>
+                        <th>Telefono</th>
                         <th>Correo</th>
                         <th>Tipo de usuario</th>
+                        <th>Corporativo</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
 
@@ -50,7 +55,19 @@
                     </tr>
                     </thead>
                     <tbody class="text-center" id="tablaA">
-
+                    <tr th:each="user : ${listUser}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.userName}"></td>
+                        <td th:text="${user.phoneNumber}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.idUserType}"></td>
+                        <td th:text="${user.idCorporation}"></td>
+                        <td th:id="${'userUpdate-' + user.id}"><button class="btn-info"><E></E>ditar</button></td>
+                        <td th:id="${'userDelete-' + user.id}"><button class="btn-danger">Eliminar</button></td>
+                    </tr>
                     </tbody>
 
                 </table>
