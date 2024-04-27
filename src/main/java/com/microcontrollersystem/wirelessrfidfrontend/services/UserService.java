@@ -35,4 +35,17 @@ public class UserService {
         }
         return null;
     }
+
+    public String addUser(String token, UserData userData) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", "Bearer " + token);
+        HttpEntity<UserData> entity = new HttpEntity<>(userData, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> responseEntity = restTemplate.exchange(properties.getUrlBackend() +
+                "/api/addUser", HttpMethod.POST, entity, String.class);
+
+        return responseEntity.getBody();
+    }
+
 }

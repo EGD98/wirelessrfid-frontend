@@ -12,4 +12,5 @@ public class UserData {
     private String email;
     private String idUserType;
     private String idCorporation;
+    private String password;
 }

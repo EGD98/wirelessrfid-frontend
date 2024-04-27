@@ -1,22 +1,4 @@
 
-async function fetchData(url, options) {
-debugger
-  try {
-    const response = await fetch(url, options); // Pasamos las opciones al método fetch
-    const data = await response.json(); // Espera a que los datos se conviertan en formato JSON
-    return data; // Devuelve los datos obtenidos
-  } catch (error) {
-    console.error('Error al obtener los datos:', error);
-    Swal.fire({
-      title: 'Error',
-      text: error,
-      icon: 'error', // Icono (puede ser 'success', 'error', 'warning', 'info' o 'question')
-      confirmButtonText: 'OK' // Texto del botón de confirmación
-    });
-    throw error; // Propaga el error para que sea manejado fuera de esta función
-  }
-}
-
 let boton = document.getElementById("sendLoginRequest");
 
 boton.addEventListener('click', function(event) {
@@ -24,10 +6,10 @@ boton.addEventListener('click', function(event) {
     try {
         let user = document.getElementById("user");
         let password = document.getElementById("password");
-
+        debugger;
         let loginRequest = {};
         loginRequest.emailUser = user.value;
-        loginRequest.password = password.value;
+        loginRequest.password = forge_sha256(password.value);
 
         const url = '/login';
         const requestBody = loginRequest;
