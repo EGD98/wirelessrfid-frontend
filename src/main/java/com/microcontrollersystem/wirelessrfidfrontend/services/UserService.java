@@ -43,9 +43,20 @@ public class UserService {
         HttpEntity<UserData> entity = new HttpEntity<>(userData, headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.exchange(properties.getUrlBackend() +
-                "/api/addUser", HttpMethod.POST, entity, String.class);
+                "/api/user", HttpMethod.POST, entity, String.class);
 
         return responseEntity.getBody();
     }
 
+    public String deleteUser(String token,Integer id){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", "Bearer " + token);
+
+        HttpEntity<Integer> entity = new HttpEntity<>(id, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> responseEntity = restTemplate.exchange(properties.getUrlBackend() +
+                "/api/deleteUser", HttpMethod.POST, entity, String.class);
+        return responseEntity.getBody();
+    }
 }

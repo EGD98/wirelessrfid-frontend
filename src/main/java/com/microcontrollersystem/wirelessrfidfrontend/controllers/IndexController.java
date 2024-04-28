@@ -1,9 +1,9 @@
 package com.microcontrollersystem.wirelessrfidfrontend.controllers;
 
-import com.google.gson.Gson;
 import com.microcontrollersystem.wirelessrfidfrontend.configuration.SystemProperties;
 import com.microcontrollersystem.wirelessrfidfrontend.models.dto.TokenData;
 import com.microcontrollersystem.wirelessrfidfrontend.models.dto.UserData;
+import com.microcontrollersystem.wirelessrfidfrontend.services.CatalogService;
 import com.microcontrollersystem.wirelessrfidfrontend.services.LoginService;
 import com.microcontrollersystem.wirelessrfidfrontend.services.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -25,6 +25,7 @@ public class IndexController {
     private final SystemProperties systemProperties;
     private final LoginService loginService;
     private final UserService userService;
+    private final CatalogService catalogService;
 
     @GetMapping(value = "/login")
     public String loginView(Model model) {
@@ -50,9 +51,14 @@ public class IndexController {
 
             List<UserData> userDataList = userService.getUserList( tokenRetrieveString);
             model.addAttribute("listUser",userDataList);
+            //obtengo los catalogos de corporativo y tipo de usuario
+            List<Map<String, Object>> catUserType =  catalogService.getCatalog(tokenRetrieveString, "USER_TYPE");
+            model.addAttribute("catUserType",catUserType);
+            List<Map<String, Object>> catCorporation =  catalogService.getCatalog(tokenRetrieveString, "CORPORATION");
+            model.addAttribute("catCorporation",catCorporation);
             return "/html/indexView";
         } catch (Exception e){
-            log.error("Fallo la validación del token",e);
+            log.error("Fallo la validación del token: {}", e.getMessage());
             return "redirect:login";
         }
     }

@@ -65,8 +65,8 @@
                         <td th:text="${user.email}"></td>
                         <td th:text="${user.idUserType}"></td>
                         <td th:text="${user.idCorporation}"></td>
-                        <td th:id="${'userUpdate-' + user.id}"><button class="btn-info">Editar</button></td>
-                        <td th:id="${'userDelete-' + user.id}"><button class="btn-danger">Eliminar</button></td>
+                        <td th:id="${'userUpdate-' + user.id}"><button class="btn-info" onclick="muestraModal(this)" >Editar</button></td>
+                        <td th:id="${'userDelete-' + user.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
                     </tr>
                     </tbody>
 
@@ -92,6 +92,7 @@
 <!-- Table finish -->
 <!-- modal user-->
 <div th:insert="~{fragments/modaluser :: modaluser}"></div>
+<div th:insert="~{fragments/modaluser :: deleteuser}"></div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

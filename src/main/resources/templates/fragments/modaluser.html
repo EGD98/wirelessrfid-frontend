@@ -16,6 +16,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="row">
+                                <input type="text" class="d-none" id="idUser">
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label for="name" class="col-form-label">Nombre:</label>
@@ -76,7 +77,9 @@
                                     <div class="mb-3">
                                         <label for="userType" class="col-form-label">Tipo de usuario:</label>
                                         <select id="userType" class="form-select">
-                                            <option value="1">Administrador</option>
+                                            <option th:each="userType : ${catUserType}" th:value="${userType.code}"
+                                                    th:text="${userType.description}">
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -84,7 +87,9 @@
                                     <div class="mb-3">
                                         <label for="corporation" class="col-form-label">Empresa:</label>
                                         <select id="corporation" class="form-select">
-                                            <option value="1" >HotelesNavMex.s.a</option>
+                                            <option th:each="corporation : ${catCorporation}" th:value="${corporation.code}"
+                                                    th:text="${corporation.description}">
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -99,5 +104,26 @@
             </div>
         </div>
     </div>
+
+    <div th:fragment="deleteuser">
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Eliminar usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 >¿ESTAS SEGURO DE ELIMINAR ESTE USUARIO?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" id="btn-delete">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </body>
 </html>
