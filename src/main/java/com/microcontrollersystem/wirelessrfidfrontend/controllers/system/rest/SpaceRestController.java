@@ -1,8 +1,7 @@
-package com.microcontrollersystem.wirelessrfidfrontend.controllers.rest;
+package com.microcontrollersystem.wirelessrfidfrontend.controllers.system.rest;
 
-import com.microcontrollersystem.wirelessrfidfrontend.models.dto.TokenData;
-import com.microcontrollersystem.wirelessrfidfrontend.models.dto.UserData;
-import com.microcontrollersystem.wirelessrfidfrontend.services.UserService;
+import com.microcontrollersystem.wirelessrfidfrontend.models.dto.SpaceData;
+import com.microcontrollersystem.wirelessrfidfrontend.services.SpaceService;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,59 +13,58 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
-@AllArgsConstructor
 @Slf4j
-public class UserRestController {
-    private final UserService userService;
+@AllArgsConstructor
+public class SpaceRestController {
+    private final SpaceService spaceService;
 
-    @PostMapping(value = "/user")
-    public ResponseEntity<Object> addUser(HttpSession session, @RequestBody UserData userData) {
+    @PostMapping(value = "/space")
+    public ResponseEntity<Object> addSpace(HttpSession session, @RequestBody SpaceData spaceData) {
         Map<String,Object> map = new HashMap<>();
         try {
             Object tokenRetrieve = session.getAttribute("token");
             String tokenRetrieveString = tokenRetrieve.toString();
-            String response = userService.addUser(tokenRetrieveString, userData);
+            String response = spaceService.addSpace(tokenRetrieveString, spaceData);
             map.put("status", 200);
             map.put("message", response);
             return ResponseEntity.ok().body(map);
-        } catch (Exception e) {
-            log.error("Ha ocurrido un error al intentar crear el usuario", e);
+        }catch (Exception e){
+            log.error("Ha ocurrido un error al intentar crear el espacio", e);
             map.put("status", 200);
-            map.put("message", "Ha ocurrido un error al intentar crear el usuario");
+            map.put("message", "Ha ocurrido un error al intentar crear el espacio");
             return ResponseEntity.internalServerError().body(map);
         }
     }
 
-    @PostMapping(value = "/deleteUser")
-    public ResponseEntity<Object> deleteUser(HttpSession session, @RequestBody Integer id) {
+    @PostMapping(value = "/deleteSpace")
+    public ResponseEntity<Object> deleteSpace(HttpSession session, @RequestBody Integer id) {
         Map<String,Object> map = new HashMap<>();
         try {
             Object tokenRetrieve = session.getAttribute("token");
             String tokenRetrieveString = tokenRetrieve.toString();
-            String response = userService.deleteUser(tokenRetrieveString, id);
+            String response = spaceService.deleteSpace(tokenRetrieveString, id);
             map.put("status", 200);
             map.put("message", response);
             return ResponseEntity.ok().body(map);
         } catch (Exception e) {
-            log.error("Ha ocurrido un error al eliminar usuario", e);
+            log.error("Ha ocurrido un error al eliminar cliente", e);
             map.put("status", 200);
-            map.put("message", "Ha ocurrido un error al eliminar usuario");
+            map.put("message", "Ha ocurrido un error al eliminar cliente");
             return ResponseEntity.internalServerError().body(map);
         }
     }
 
-    @PostMapping(value = "/getUserList")
-    public ResponseEntity<Object> getUserList(HttpSession session) {
-        Map<String,Object> map = new HashMap<>();
+    @PostMapping(value = "/getSpaceList")
+    public ResponseEntity<Object> getSpaceList(HttpSession session) {
+        Map<String, Object> map = new HashMap<>();
         try {
             Object tokenRetrieve = session.getAttribute("token");
             String tokenRetrieveString = tokenRetrieve.toString();
-            List<UserData> userDataList = userService.getUserList(tokenRetrieveString);
+            List<SpaceData> spaceDataList = spaceService.getSpaceList(tokenRetrieveString);
             map.put("status", 200);
-            map.put("message", userDataList);
+            map.put("message", spaceDataList);
             return ResponseEntity.ok().body(map);
         } catch (Exception e) {
             log.error("Ha ocurrido un error al actualizar la información", e);

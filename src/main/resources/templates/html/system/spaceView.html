@@ -2,29 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{fragments/header :: head}">
 </head>
+<style>
+    body{
+      background-image: url(/images/NEON.png);
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .h3{
+      color:#006699;
+      text-shadow: #000000 1px 3px 1px;
+      text-align: left;
+    }
+    .door, .card {
+      border: 8px solid #008080;
+       box-shadow: #CCCCCC 3px 3px 8px;
+    }
+    .a{
+      font-family: 'Righteous', cursive;
+    }
+
+</style>
 <body>
 <!-- Start Menu Gigaticket-->
-<div th:insert="~{fragments/registryUserMenu :: registryUserMenu}"></div>
+<div th:insert="~{fragments/registryUserMenu :: clientMenu}"></div>
 <!-- Finish Menu Gigaticket-->
-
 <!-- Start Container-->
-<div class="container pt-5">
-    <br>
-    <div class="row justify-content-center m-3 text-center">
-        <h4> Tienes hasta 50 registros de personal </h4>
-        <h4> ¿Como Administrador te gustaria registrar un Usuario?</h4>
-    </div>
-
-</div>
-<!-- Finish Container-->
-
 <!--table start  -->
 <div class="container ">
     <div class="container-fluid  mt-5 table-responsive-xl">
         <div class="form-group">
             <div class="row">
                 <div class="col-3">
-                    <button th:style="'margin:0 !important;'"  class="btn btn-outline-info btn-block m-3  " name="btn-user" id="btn-user" >Agregar usuario</button>
+                    <button th:style="'margin:0 !important;'"  class="btn btn-outline-info btn-block m-3  " name="btn-space" id="btn-space" >Agregar Espacio</button>
                 </div>
                 <div class="col-3 text-center">
                     <input class="form-control " id="myInput" type="text" placeholder="Search..">
@@ -33,37 +42,28 @@
         </div>
         <div class="row d-flex  ">
             <div class="col-xl-12 text-center">
-                <!--//todo mapear la tabla dinamica de personal y agregar las acciones -->
+                <!--//todo mapear la tabla dinamica de espacios y agregar las acciones -->
                 <table class="table table-hover table-bordered">
                     <thead class="text-light text-center fondogt">
                     <tr class="">
                         <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>UserName</th>
-                        <th>Telefono</th>
-                        <th>Correo</th>
-                        <th>Tipo de usuario</th>
-                        <th>Corporativo</th>
+                        <th>Nombre Habitación</th>
+                        <th>Lugares</th>
+                        <th>Fecha de registro</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
-                    <tbody class="text-center" id="userTableBody">
-                    <tr th:each="user : ${listUser}">
-                        <td th:text="${user.id}"></td>
-                        <td th:text="${user.name}"></td>
-                        <td th:text="${user.firstName}"></td>
-                        <td th:text="${user.lastName}"></td>
-                        <td th:text="${user.userName}"></td>
-                        <td th:text="${user.phoneNumber}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.idUserType}"></td>
-                        <td th:text="${user.idCorporation}"></td>
-                        <td th:id="${'userUpdate-' + user.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
-                        <td th:id="${'userDelete-' + user.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
-                    </tr>
+                    <tbody class="text-center table-primary" id="spaceTableBody">
+                        <tr th:each="space : ${spaceList}">
+                            <td th:text="${space.id}"></td>
+                            <td th:text="${space.roomName}"></td>
+                            <td th:text="${space.places}"></td>
+                            <td th:text="${space.registrationDate}"></td>
+                            <td th:id="${'spaceUpdate-' + space.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
+                            <td th:id="${'spaceDelete-' + space.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
+                        </tr>
+
                     </tbody>
 
                 </table>
@@ -88,17 +88,18 @@
     <!--boton actualizar finish -->
 </div>
 <!-- Table finish -->
+<!-- Finish Container-->
 <!-- modal user-->
-<div th:insert="~{fragments/modaluser :: modaluser}"></div>
-<div th:insert="~{fragments/modaluser :: deleteuser}"></div>
+<div th:insert="~{fragments/modals :: modalSpace}"></div>
+<div th:insert="~{fragments/modals :: deleteSpace}"></div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="/js/validations/index.js"></script>
 <script src="/js/utils/utilFunctions.js"></script>
-<script src="/js/hashing/forge-sha256.min.js"></script>
+<script src="/js/validations/space.js"></script>
+
 </body>
 </html>

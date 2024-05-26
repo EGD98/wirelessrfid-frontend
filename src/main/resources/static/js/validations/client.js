@@ -1,62 +1,59 @@
-let btnAddUser = document.getElementById("btn-user");
+let btnAddClient = document.getElementById("btn-client");
 let myModal;
-btnAddUser.addEventListener("click", function() {
+btnAddClient.addEventListener("click", function() {
     myModal = new bootstrap.Modal(document.getElementById('userModal'), {
       keyboard: false
     })
     document.getElementById('name').value = "";
     document.getElementById('firstName').value = "";
     document.getElementById('lastName').value = "";
-    document.getElementById('userName').value = "";
+    document.getElementById('rfidCode').value = "";
     document.getElementById('phoneNumber').value = "";
     document.getElementById('email').value = "";
-    document.getElementById('userType').value = "";
-    document.getElementById('corporation').value = "";
+    document.getElementById('space').value = "";
+    document.getElementById('ingressDate').value = "";
+    document.getElementById('egressDate').value = "";
+    document.getElementById('ingressTime').value = "";
+    document.getElementById('egressTime').value = "";
     document.getElementById("idUser").value = null;
     myModal.show()
 })
 
-let btnSaveUser = document.getElementById("btn-confirmar");
-btnSaveUser.addEventListener("click", function() {
+let btnSaveclient = document.getElementById("btn-confirmar");
+btnSaveclient.addEventListener("click", function() {
     (async () => {
         try {
-            let idUser      = document.getElementById("idUser");
+            let idClient      = document.getElementById("idUser");
             let name        = document.getElementById('name');
             let firstName   = document.getElementById('firstName');
             let lastName    = document.getElementById('lastName');
-            let userName    = document.getElementById('userName');
+            let space    = document.getElementById('space');
+            let rfidCode    = document.getElementById('rfidCode');
+
             let phoneNumber = document.getElementById('phoneNumber');
             let email       = document.getElementById('email');
-            let password    = document.getElementById('password');
-            let userType    = document.getElementById('userType');
-            let corporation = document.getElementById('corporation');
+            let ingressDate    = document.getElementById('ingressDate');
+            let egressDate    = document.getElementById('egressDate');
+            let ingressTime = document.getElementById('ingressTime');
+            let egressTime = document.getElementById('egressTime');
             //Esta variable es solo para confirmar la contraseña del usuario.
             let passwordConfirm = document.getElementById('passwordConfirm');
 
-            if (password.value !== passwordConfirm.value) {
-                console.log('Error contraseñas no coinciden');
-                Swal.fire({
-                      title: 'Error',
-                      text: 'Error contraseñas no coinciden',
-                      icon: 'error', // Icono (puede ser 'success', 'error', 'warning', 'info' o 'question')
-                      confirmButtonText: 'OK' // Texto del botón de confirmación
-                    });
-                return false;
-            }
-
             let bodyRequest = {};
-            bodyRequest.id = idUser.value;
+            bodyRequest.id = idClient.value;
             bodyRequest.name = name.value;
             bodyRequest.firstName = firstName.value;
             bodyRequest.lastName = lastName.value;
-            bodyRequest.userName = userName.value;
+            bodyRequest.space = space.value;
+            bodyRequest.rfidCode = rfidCode.value;
             bodyRequest.phoneNumber = phoneNumber.value;
             bodyRequest.email = email.value;
-            bodyRequest.password = forge_sha256(password.value);
-            bodyRequest.idUserType = userType.value;
-            bodyRequest.idCorporation = corporation.value;
+            bodyRequest.admissionDate = ingressDate.value;
+            bodyRequest.egressDate = egressDate.value;
+            bodyRequest.admissionTime = ingressTime.value;
+            bodyRequest.egressTime = egressTime.value;
 
-            const url = '/user';
+            const url = '/client';
             const options = getOptionsForPostFetch(bodyRequest);
             const data = await fetchData(url, options);
             console.log('data', data);
@@ -82,7 +79,7 @@ btnSaveUser.addEventListener("click", function() {
 })
 
 function showModal(boton) {
-    document.getElementById("exampleModalLabel").textContent = "Editar Usuario";
+    document.getElementById("exampleModalLabel").textContent = "Editar Cliente";
     myModal = new bootstrap.Modal(document.getElementById('userModal'), {
           keyboard: false
         })
@@ -93,20 +90,26 @@ function showModal(boton) {
     let name = celdas[1].innerHTML;
     let firstName = celdas[2].innerHTML;
     let lastName = celdas[3].innerHTML;
-    let userName = celdas[4].innerHTML;
-    let phoneNumber = celdas[5].innerHTML;
-    let email = celdas[6].innerHTML;
-    let idUserType = celdas[7].innerHTML;
-    let idCorporation = celdas[8].innerHTML;
+    let phoneNumber = celdas[4].innerHTML;
+    let email = celdas[5].innerHTML;
+    let rfidCode = celdas[6].innerHTML;
+    let space = celdas[7].innerHTML;
+    let ingressDate = celdas[8].innerHTML;
+    let egressDate = celdas[9].innerHTML;
+    let ingressTime = celdas[10].innerHTML;
+    let egressTime = celdas[11].innerHTML;
 
     document.getElementById('name').value = name;
     document.getElementById('firstName').value = firstName;
     document.getElementById('lastName').value = lastName;
-    document.getElementById('userName').value = userName;
     document.getElementById('phoneNumber').value = phoneNumber;
     document.getElementById('email').value = email;
-    document.getElementById('userType').value = idUserType;
-    document.getElementById('corporation').value = idCorporation;
+    document.getElementById('rfidCode').value = rfidCode;
+    document.getElementById('space').value = space;
+    document.getElementById('ingressDate').value = ingressDate;
+    document.getElementById('egressDate').value = egressDate;
+    document.getElementById('ingressTime').value = ingressTime;
+    document.getElementById('egressTime').value = egressTime;
     document.getElementById("idUser").value = id;
 
 }
@@ -118,19 +121,19 @@ function showDeleteModal(boton) {
         let fila = boton.parentNode.parentNode;
         let celdas = fila.getElementsByTagName("td");
         let id = celdas[0].innerHTML;
-        let btnDeteleUser = document.getElementById("btn-delete");
-        btnDeteleUser.setAttribute("data-id", id);
+        let btnDeleteClient = document.getElementById("btn-delete");
+        btnDeleteClient.setAttribute("data-id", id);
 }
 
 
-let btnDeteleUser = document.getElementById("btn-delete");
-btnDeteleUser.addEventListener("click", function() {
+let btnDeleteClient = document.getElementById("btn-delete");
+btnDeleteClient.addEventListener("click", function() {
     (async () => {
         try {
             let idUser      = this.getAttribute("data-id");
             let bodyRequest = idUser;
 
-            const url = '/deleteUser';
+            const url = '/deleteClient';
             const options = getOptionsForPostFetch(bodyRequest);
             const data = await fetchData(url, options);
             console.log('data', data);
@@ -159,7 +162,7 @@ let btnUpdateTable = document.getElementById('btnUpdateTable');
 btnUpdateTable.addEventListener("click", getUserList);
 
 async function getUserList() {
-    const url = '/getUserList';
+    const url = '/getClientList';
     let bodyRequest = {}
     const options = getOptionsForPostFetch(bodyRequest);
     const data = await fetchData(url, options);
@@ -168,20 +171,23 @@ async function getUserList() {
     //Elimino el contenido de la tabla
     document.getElementById('userTableBody').innerHTML = '';
     let tableBody = "";
-    for (let user of data.message) {
+    for (let client of data.message) {
         tableBody += `
-            <tr id="${user.id}">
-                <td class="" >${user.id}</td>
-                <td class="" >${user.name}</td>
-                <td class="" >${user.firstName}</td>
-                <td class="" >${user.lastName}</td>
-                <td class="" >${user.userName}</td>
-                <td class="" >${user.phoneNumber}</td>
-                <td class="" >${user.email}</td>
-                <td class="" >${user.idUserType}</td>
-                <td class="" >${user.idCorporation}</td>
-                <td th:id="${'userUpdate-' + user.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
-                <td th:id="${'userDelete-' + user.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
+            <tr id="${client.id}">
+                <td class="" >${client.id}</td>
+                <td class="" >${client.name}</td>
+                <td class="" >${client.firstName}</td>
+                <td class="" >${client.lastName}</td>
+                <td class="" >${client.phoneNumber}</td>
+                <td class="" >${client.email}</td>
+                <td class="" >${client.rfidCode}</td>
+                <td class="" >${client.space}</td>
+                <td> ${client.admissionDate}</td>
+                <td>${client.egressDate}</td>
+                <td>${client.admissionTime}</td>
+                <td>${client.egressTime}</td>
+                <td th:id="${'userUpdate-' + client.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
+                <td th:id="${'userDelete-' + client.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
             </tr>
         `;
     }

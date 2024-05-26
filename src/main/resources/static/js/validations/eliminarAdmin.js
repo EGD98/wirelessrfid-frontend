@@ -1,13 +1,4 @@
 $(document).ready(function(){
-    obtenerDatos();
-   // hacerclic();
-
-
-    $('#btn-actualizarA').click(function(){
-
-        obtenerDatos();
-
-    });
 
     $("#myInput").on("keyup", function() {
 
@@ -98,7 +89,7 @@ $('#eliminarA').on('click',function(){
                                 `;
                 $('#alertEA').empty();
                 $('#alertEA').append(msj);
-                obtenerDatos();
+                getUserList();
         }
         else{
             $('#deleteAModal').modal('hide');
@@ -116,29 +107,3 @@ $('#eliminarA').on('click',function(){
         }
        });
 });
-function obtenerDatos(){
-    $.get("../db/registrosADB.php", function(respuesta){
-        console.log(respuesta);
-
-                //respuesta=JSON.stringify(respuesta);
-        respuesta = JSON.parse(respuesta);
-
-        var texto = "";
-
-        for(i = 0; i<respuesta.length; i++){
-            texto += `
-                <tr id="${respuesta[i]['phone']}">
-                    <td class="bg-danger " >${respuesta[i]['name']}</td>
-                    <td >${respuesta[i]['userName']}</td>
-                    <td >${respuesta[i]['email']}</td>
-                    <td >${respuesta[i]['tipo_user']}</td>
-                    <td ><button  class="btn btn-outline-danger  btn-sm delete" name="btn-del" id = "btn-delete">Eliminar</button></td>
-                </tr>`;
-
-                }
-
-                $('#tablaA').empty();
-                $('#tablaA').append(texto);
-
-    });
-}

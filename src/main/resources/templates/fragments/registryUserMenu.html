@@ -7,42 +7,92 @@
 <body>
   <div th:fragment="registryUserMenu">
     <!-- Start Menu Gigaticket-->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark fondogt">
-      <!-- Navbar content -->
-      <a class="navbar-brand" href="#">
-        <img th:src="'images/gt_icon.ico'" width="30" height="30" class="d-inline-block align-top rounded img-fluid" alt="Gigaticket">
-        <strong> Registros</strong>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark fondogt bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img th:src="'images/gt_icon.ico'" width="30" height="30" class="d-inline-block align-top rounded img-fluid"
+               alt="Gigaticket">
+          <strong> Registros</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"><strong> Administracion</strong></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                <strong> Menu</strong>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" th:href="'/myProfile'">Mi perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" th:href="'/logout'">Cerrar Sesión</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Atras</a></li>
+              </ul>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <h6 th:style="'color:#fff;'"> Bienvenido <b th:text="${user}"></b> Administrador de Gigaticket </h6>
+          </span>
+        </div>
+      </div>
+    </nav>
+    <!--End menu-->
+  </div>
 
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-
-        <ul class="navbar-nav mr-auto ">
-          <li class="nav-item active">
-            <a class="nav-link" href="#"><strong> Administracion</strong> <span class="sr-only">(current)</span></a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-              <strong> Menu</strong>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" th:href="'/myProfile'">Mi perfil</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" th:href="'/logout'">Cerrar Sesion</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Atras</a>
-            </div>
-          </li>
-        </ul>
-
-        <h6 th:style="'color:#fff;'"> Bienvenido <b th:text="${user}"></b> Administrador de Gigaticket </h6>
-
+  <div th:fragment="clientMenu">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark fondogt bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img th:src="'images/gt_icon.ico'" width="30" height="30" class="d-inline-block align-top rounded img-fluid"
+               alt="Gigaticket">
+          <strong>Control de usuarios</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/index"><strong> Inicio</strong></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/clients"> <strong>Clientes</strong></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><strong>Accesos</strong></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><strong>Espacios</strong></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><strong>Registros</strong></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                <strong> Menu</strong>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" th:href="'/myProfile'">Mi perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" th:href="'/logout'">Cerrar Sesión</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Atras</a></li>
+              </ul>
+            </li>
+          </ul>
+          <span class="navbar-text">
+              <h6 th:style="'color:#fff;'"> Bienvenido <b th:text="${user}"></b> Usuario de Gigaticket </h6>
+          </span>
+        </div>
       </div>
     </nav>
   </div>

@@ -49,17 +49,34 @@ public class IndexController {
             String tokenRetrieveString = tokenRetrieve.toString();
             model.addAttribute("user", token.getSub());
 
-            List<UserData> userDataList = userService.getUserList( tokenRetrieveString);
+            List<UserData> userDataList = userService.getUserList(tokenRetrieveString);
             model.addAttribute("listUser",userDataList);
             //obtengo los catalogos de corporativo y tipo de usuario
             List<Map<String, Object>> catUserType =  catalogService.getCatalog(tokenRetrieveString, "USER_TYPE");
             model.addAttribute("catUserType",catUserType);
             List<Map<String, Object>> catCorporation =  catalogService.getCatalog(tokenRetrieveString, "CORPORATION");
             model.addAttribute("catCorporation",catCorporation);
-            return "/html/indexView";
-        } catch (Exception e){
+            UserData userDataOwn = null;
+            for (UserData userData : userDataList) {
+                if (userData.getId().equals(token.getJti().toString())) {
+                    userDataOwn = userData;
+                    break;
+                }
+            }
+            if (Objects.nonNull(userDataOwn) && userDataOwn.getIdUserType().equals("1")) {
+                return "/html/indexView";
+            } else {
+                return "/html/system/indexMainView";
+            }
+        } catch (Exception e) {
             log.error("Fallo la validación del token: {}", e.getMessage());
             return "redirect:login";
         }
+    }
+
+    @GetMapping(value = "/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("token");
+        return "redirect:login";
     }
 }

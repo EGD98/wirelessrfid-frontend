@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="modalClient">
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <input type="text" class="d-none" id="idUser">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="name" class="col-form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="firstName" class="col-form-label">Apellido paterno:</label>
+                                    <input type="text" class="form-control" id="firstName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="lastName" class="col-form-label">Apellido materno:</label>
+                                    <input type="text" class="form-control" id="lastName">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="col-form-label">Numero de telefono:</label>
+                                    <input type="tel" maxlength="10" minlength="10" class="form-control" id="phoneNumber">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="email" class="col-form-label">Correo:</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="rfidCode" class="col-form-label">Código RFID:</label>
+                                    <input type="text" class="form-control" id="rfidCode">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="space" class="col-form-label">Espacio:</label>
+                                    <input type="text" class="form-control" id="space">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="ingressDate" class="col-form-label">Fecha de Ingreso:</label>
+                                    <input type="date" class="form-control" id="ingressDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="egressDate" class="col-form-label">Fecha de Egreso:</label>
+                                    <input type="date" class="form-control" id="egressDate">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="ingresstime" class="col-form-label">Hora de Ingreso:</label>
+                                    <input type="time" class="form-control" id="ingressTime">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="egresstime" class="col-form-label">Hora de Egreso:</label>
+                                    <input type="time" class="form-control" id="egressTime">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-confirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="deleteClient">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Eliminar Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 >¿ESTAS SEGURO DE ELIMINAR ESTE CLIENTE?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Space Modal-->
+<div th:fragment="modalSpace">
+    <div class="modal fade" id="spaceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registrar Espacio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <input type="text" class="d-none" id="idSpace">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="roomName" class="col-form-label">Nombre de Habitación:</label>
+                                    <input type="text" class="form-control" id="roomName">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="places" class="col-form-label">Lugares:</label>
+                                    <input type="tel" maxlength="3" class="form-control" id="places">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="registrationDate" class="col-form-label">Fecha de registro:</label>
+                                    <input type="date" class="form-control" id="registrationDate">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-confirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="deleteSpace">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Eliminar Espacio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 >¿ESTAS SEGURO DE ELIMINAR ESTE ESPACIO?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Space Modal-->
+
+
+
+</body>
+</html>

@@ -1,8 +1,7 @@
 package com.microcontrollersystem.wirelessrfidfrontend.services;
 
 import com.microcontrollersystem.wirelessrfidfrontend.configuration.SystemProperties;
-import com.microcontrollersystem.wirelessrfidfrontend.models.dto.UserData;
-
+import com.microcontrollersystem.wirelessrfidfrontend.models.dto.SpaceData;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,20 +12,20 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Objects;
 
-@Slf4j
 @Service
+@Slf4j
 @AllArgsConstructor
-public class UserService {
+public class SpaceService {
     private final SystemProperties properties;
 
-    public List<UserData> getUserList(String token) throws Exception {
+    public List<SpaceData> getSpaceList(String token) throws Exception {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", "Bearer " + token);
         HttpEntity<String> entity = new HttpEntity<>(headers);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<UserData>> responseEntity = restTemplate.exchange(properties.getUrlBackend() +
-                "/api/userList", HttpMethod.POST, entity, new ParameterizedTypeReference<List<UserData>>() {});
+        ResponseEntity<List<SpaceData>> responseEntity = restTemplate.exchange(properties.getUrlBackend() +
+                "/api/spaceList", HttpMethod.POST, entity, new ParameterizedTypeReference<List<SpaceData>>() {});
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             if (Objects.isNull(responseEntity.getBody()))
                 return null;
@@ -36,20 +35,18 @@ public class UserService {
         }
         return null;
     }
-
-    public String addUser(String token, UserData userData) {
+    public String addSpace(String token, SpaceData spaceData){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", "Bearer " + token);
-        HttpEntity<UserData> entity = new HttpEntity<>(userData, headers);
+        HttpEntity<SpaceData> entity = new HttpEntity<>(spaceData, headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.exchange(properties.getUrlBackend() +
-                "/api/user", HttpMethod.POST, entity, String.class);
-
+                "/api/space", HttpMethod.POST, entity, String.class);
         return responseEntity.getBody();
     }
 
-    public String deleteUser(String token,Integer id){
+    public String deleteSpace(String token,Integer id){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", "Bearer " + token);
@@ -57,7 +54,7 @@ public class UserService {
         HttpEntity<Integer> entity = new HttpEntity<>(id, headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.exchange(properties.getUrlBackend() +
-                "/api/deleteUser", HttpMethod.POST, entity, String.class);
+                "/api/deleteSpace", HttpMethod.POST, entity, String.class);
         return responseEntity.getBody();
     }
 }
