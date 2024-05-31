@@ -33,7 +33,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-3">
-                    <button th:style="'margin:0 !important;'"  class="btn btn-info btn-block m-3  " name="btn-client" id="btn-client" >Agregar Cliente</button>
+                    <button th:style="'margin:0 !important;'"  class="btn btn-info btn-block m-3  " name="btn-schedule" id="btn-schedule" >Agregar Horario</button>
                 </div>
                 <div class="col-3 text-center">
                     <input class="form-control " id="myInput" type="text" placeholder="Search..">
@@ -42,45 +42,34 @@
         </div>
         <div class="row d-flex  ">
             <div class="col-xl-12 text-center">
-                <!--//todo mapear la tabla dinamica de personal y agregar las acciones -->
+                <!--//todo mapear la tabla dinamica de espacios y agregar las acciones -->
                 <table class="table table-hover table-bordered">
                     <thead class="text-light text-center fondogt">
-                    <tr class="">
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Telefono</th>
-                        <th>Correo</th>
-                        <th>Código RFID</th>
-                        <th>Espacio</th>
-                        <th>Fecha de ingreso</th>
-                        <th>Fecha de egreso</th>
-                        <th>Hora de ingreso</th>
-                        <th>Hora de egreso</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
+                        <tr class="">
+                            <th>Id</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Hora Inicio</th>
+                            <th>Hora Fin</th>
+                            <th>Cliente</th>
+                            <th>Tipo espacio</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
                     </thead>
-                    <tbody class="text-center table-primary" id="userTableBody">
-                    <tr th:each="client : ${clientList}">
-                        <td th:text="${client.id}"></td>
-                        <td th:text="${client.name}"></td>
-                        <td th:text="${client.firstName}"></td>
-                        <td th:text="${client.lastName}"></td>
-                        <td th:text="${client.phoneNumber}"></td>
-                        <td th:text="${client.email}"></td>
-                        <td th:text="${client.rfidCode}"></td>
-                        <td th:text="${client.space}"></td>
-                        <td th:text="${client.admissionDate}"></td>
-                        <td th:text="${client.egressDate}"></td>
-                        <td th:text="${client.admissionTime}"></td>
-                        <td th:text="${client.egressTime}"></td>
-                        <td th:id="${'clientUpdate-' + client.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
-                        <td th:id="${'clientDelete-' + client.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
-                    </tr>
+                    <tbody class="text-center table-primary" id="scheduleTableBody">
+                        <tr th:each="schedule : ${scheduleList}">
+                            <td th:text="${schedule.id}"></td>
+                            <td th:text="${schedule.startDate}"></td>
+                            <td th:text="${schedule.endDate}"></td>
+                            <td th:text="${schedule.startHour}"></td>
+                            <td th:text="${schedule.endHour}"></td>
+                            <td th:text="${schedule.idClient}"></td>
+                            <td th:text="${schedule.idSpace}"></td>
+                            <td th:id="${'scheduleUpdate-' + schedule.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
+                            <td th:id="${'scheduleDelete-' + schedule.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
+                        </tr>
                     </tbody>
-
                 </table>
             </div>
         </div>
@@ -94,7 +83,7 @@
         <div class="col-sm-3 text-center">
 
             <div class="form-group">
-                <button  class="btn btn-info btn-lg btn-block mx-auto  " name="btnUpdateTable" id="btnUpdateTable">
+                <button  class="btn btn-info btn-lg btn-block m-3  " name="btnUpdateTable" id="btnUpdateTable">
                     Actualizar tabla
                 </button>
             </div>
@@ -105,8 +94,8 @@
 <!-- Table finish -->
 <!-- Finish Container-->
 <!-- modal user-->
-<div th:insert="~{fragments/modals :: modalClient}"></div>
-<div th:insert="~{fragments/modals :: deleteClient}"></div>
+<div th:insert="~{fragments/modals :: modalSchedule}"></div>
+<div th:insert="~{fragments/modals :: deleteSchedule}"></div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -114,7 +103,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/js/utils/utilFunctions.js"></script>
-<script src="/js/validations/client.js"></script>
+<script src="/js/validations/schedule.js"></script>
 
 </body>
 </html>

@@ -1,7 +1,8 @@
 package com.microcontrollersystem.wirelessrfidfrontend.models.dto;
 
-import java.util.Date;
+import lombok.Data;
 
+@Data
 public class ScheduleData {
 
     private String id;

@@ -189,7 +189,98 @@
 </div>
 <!--End Space Modal-->
 
+<!--Schedule Modal-->
+<div th:fragment="modalSchedule">
+    <div class="modal fade" id="modalSchedule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registrar Horario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <input type="text" class="d-none" id="idSchedule">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="startDate" class="col-form-label">Fecha Inicio</label>
+                                    <input type="date" class="form-control" id="startDate">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="endDate" class="col-form-label">Fecha Fin</label>
+                                    <input type="date" maxlength="3" class="form-control" id="endDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="startHour" class="col-form-label">Hora Inicio</label>
+                                    <input type="time" class="form-control" id="startHour">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="endHour" class="col-form-label">Hora Fin</label>
+                                    <input type="time" class="form-control" id="endHour">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="client" class="col-form-label">Cliente</label>
+                                    <input type="text" class="form-control" id="client">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="SpaceType" class="col-form-label">Tipo habitación</label>
+                                    <select id="spaceType" class="form-select">
+                                        <option th:each="space : ${catSpaceType}" th:value="${space.code}"
+                                                th:text="${space.description}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-confirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-
+<div th:fragment="deleteSchedule">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Eliminar Horario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 >¿ESTAS SEGURO DE ELIMINAR ESTE HORARIO?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Schedule Modal-->
 </body>
 </html>
