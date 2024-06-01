@@ -6,9 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +56,23 @@ public class ClientRestController {
 
     @PostMapping(value = "/getClientList")
     public ResponseEntity<Object> getClientrList(HttpSession session) {
+        Map<String,Object> map = new HashMap<>();
+        try {
+            Object tokenRetrieve = session.getAttribute("token");
+            String tokenRetrieveString = tokenRetrieve.toString();
+            List<ClientData> clientDataList = clientService.getClientList(tokenRetrieveString);
+            map.put("status", 200);
+            map.put("message", clientDataList);
+            return ResponseEntity.ok().body(map);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error al actualizar la información", e);
+            map.put("status", 200);
+            map.put("message", "Ha ocurrido un error al actualizar la información");
+            return ResponseEntity.internalServerError().body(map);
+        }
+    }
+    @GetMapping(value = "/completeClientList/{query}")
+    public ResponseEntity<Object> getCompleteClientList(HttpSession session,@PathVariable String query) {
         Map<String,Object> map = new HashMap<>();
         try {
             Object tokenRetrieve = session.getAttribute("token");

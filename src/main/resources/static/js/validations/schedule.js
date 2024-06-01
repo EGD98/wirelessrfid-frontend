@@ -179,3 +179,44 @@ async function getUserList() {
     // Añado el contenido de 'tableBody' a la tabla
     document.getElementById('scheduleTableBody').innerHTML = tableBody;
 }
+
+document.getElementById('client').addEventListener('input', function() {
+    const query = this.value;
+    if (query.length >= 4) {
+        fetchUsers(query);
+    } else {
+        document.getElementById('suggestions').innerHTML = '';
+    }
+});
+async function fetchUsers(query) {
+    try {
+        const response = await fetch(`/completeClientList/${query}`);
+        if (!response.ok) {
+            throw new Error('Error en la petición a la API');
+        }
+        const clients = await response.json();
+        console.log(clients);
+        displaySuggestions(clients.message);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function displaySuggestions(clients) {
+    const suggestionsSelect = document.getElementById('suggestions');
+    suggestionsSelect.innerHTML = '';
+    suggestionsSelect.style.display = 'block';
+
+    clients.forEach(client => {
+        const option = document.createElement('option');
+        option.value = client.name;
+        option.textContent = `${client.name} ${client.firstName} - ${client.email}`;
+        suggestionsSelect.appendChild(option);
+    });
+
+    suggestionsSelect.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        document.getElementById('client').value = selectedOption.value;
+        suggestionsSelect.style.display = 'none';
+    });
+}
