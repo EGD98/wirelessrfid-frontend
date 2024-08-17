@@ -12,4 +12,5 @@ public class ScheduleData {
     private String startHour;
     private String endHour;
     private String idSpace;
+    private String rfidCode;
 }

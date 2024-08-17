@@ -7,14 +7,8 @@ btnAddClient.addEventListener("click", function() {
     document.getElementById('name').value = "";
     document.getElementById('firstName').value = "";
     document.getElementById('lastName').value = "";
-    document.getElementById('rfidCode').value = "";
     document.getElementById('phoneNumber').value = "";
     document.getElementById('email').value = "";
-    document.getElementById('space').value = "";
-    document.getElementById('ingressDate').value = "";
-    document.getElementById('egressDate').value = "";
-    document.getElementById('ingressTime').value = "";
-    document.getElementById('egressTime').value = "";
     document.getElementById("idUser").value = null;
     myModal.show()
 })
@@ -27,15 +21,9 @@ btnSaveclient.addEventListener("click", function() {
             let name        = document.getElementById('name');
             let firstName   = document.getElementById('firstName');
             let lastName    = document.getElementById('lastName');
-            let space    = document.getElementById('space');
-            let rfidCode    = document.getElementById('rfidCode');
-
             let phoneNumber = document.getElementById('phoneNumber');
             let email       = document.getElementById('email');
-            let ingressDate    = document.getElementById('ingressDate');
-            let egressDate    = document.getElementById('egressDate');
-            let ingressTime = document.getElementById('ingressTime');
-            let egressTime = document.getElementById('egressTime');
+
             //Esta variable es solo para confirmar la contraseña del usuario.
             let passwordConfirm = document.getElementById('passwordConfirm');
 
@@ -44,15 +32,8 @@ btnSaveclient.addEventListener("click", function() {
             bodyRequest.name = name.value;
             bodyRequest.firstName = firstName.value;
             bodyRequest.lastName = lastName.value;
-            bodyRequest.space = space.value;
-            bodyRequest.rfidCode = rfidCode.value;
             bodyRequest.phoneNumber = phoneNumber.value;
             bodyRequest.email = email.value;
-            bodyRequest.admissionDate = ingressDate.value;
-            bodyRequest.egressDate = egressDate.value;
-            bodyRequest.admissionTime = ingressTime.value;
-            bodyRequest.egressTime = egressTime.value;
-
             const url = '/client';
             const options = getOptionsForPostFetch(bodyRequest);
             const data = await fetchData(url, options);
@@ -92,24 +73,13 @@ function showModal(boton) {
     let lastName = celdas[3].innerHTML;
     let phoneNumber = celdas[4].innerHTML;
     let email = celdas[5].innerHTML;
-    let rfidCode = celdas[6].innerHTML;
-    let space = celdas[7].innerHTML;
-    let ingressDate = celdas[8].innerHTML;
-    let egressDate = celdas[9].innerHTML;
-    let ingressTime = celdas[10].innerHTML;
-    let egressTime = celdas[11].innerHTML;
+
 
     document.getElementById('name').value = name;
     document.getElementById('firstName').value = firstName;
     document.getElementById('lastName').value = lastName;
     document.getElementById('phoneNumber').value = phoneNumber;
     document.getElementById('email').value = email;
-    document.getElementById('rfidCode').value = rfidCode;
-    document.getElementById('space').value = space;
-    document.getElementById('ingressDate').value = ingressDate;
-    document.getElementById('egressDate').value = egressDate;
-    document.getElementById('ingressTime').value = ingressTime;
-    document.getElementById('egressTime').value = egressTime;
     document.getElementById("idUser").value = id;
 
 }
@@ -180,12 +150,6 @@ async function getUserList() {
                 <td class="" >${client.lastName}</td>
                 <td class="" >${client.phoneNumber}</td>
                 <td class="" >${client.email}</td>
-                <td class="" >${client.rfidCode}</td>
-                <td class="" >${client.space}</td>
-                <td> ${client.admissionDate}</td>
-                <td>${client.egressDate}</td>
-                <td>${client.admissionTime}</td>
-                <td>${client.egressTime}</td>
                 <td th:id="${'userUpdate-' + client.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
                 <td th:id="${'userDelete-' + client.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
             </tr>

@@ -53,6 +53,7 @@
                             <th>Hora Fin</th>
                             <th>Cliente</th>
                             <th>Tipo espacio</th>
+                            <th>RFID</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
@@ -66,6 +67,7 @@
                             <td th:text="${schedule.endHour}"></td>
                             <td th:text="${schedule.idClient}"></td>
                             <td th:text="${schedule.idSpace}"></td>
+                            <td th:text="${schedule.rfidCode}"></td>
                             <td th:id="${'scheduleUpdate-' + schedule.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
                             <td th:id="${'scheduleDelete-' + schedule.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
                         </tr>

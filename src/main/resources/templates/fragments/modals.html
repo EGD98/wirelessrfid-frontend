@@ -51,46 +51,6 @@
                                     <input type="email" class="form-control" id="email">
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="rfidCode" class="col-form-label">Código RFID:</label>
-                                    <input type="text" class="form-control" id="rfidCode">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="space" class="col-form-label">Espacio:</label>
-                                    <input type="text" class="form-control" id="space">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="ingressDate" class="col-form-label">Fecha de Ingreso:</label>
-                                    <input type="date" class="form-control" id="ingressDate">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="egressDate" class="col-form-label">Fecha de Egreso:</label>
-                                    <input type="date" class="form-control" id="egressDate">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="ingresstime" class="col-form-label">Hora de Ingreso:</label>
-                                    <input type="time" class="form-control" id="ingressTime">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="egresstime" class="col-form-label">Hora de Egreso:</label>
-                                    <input type="time" class="form-control" id="egressTime">
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -222,8 +182,6 @@
                                     <input type="time" class="form-control" id="startHour">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="endHour" class="col-form-label">Hora Fin</label>
@@ -232,13 +190,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="mb-3">
                                     <label for="client" class="col-form-label">Cliente</label>
-                                    <input type="text" class="form-control" id="client">
+                                    <select id="client" class="form-select">
+                                        <option th:each="client : ${catClient}" th:value="${client.code}"
+                                                th:text="${client.description}">
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
-                            <select class="form-select form-select-sm" id="suggestions" size="5" style="display: none;"></select>
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -249,6 +210,12 @@
                                                 th:text="${space.description}">
                                         </option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="rfidCode" class="col-form-label">Codigo RFID</label>
+                                    <input type="text" class="form-control" id="rfidCode">
                                 </div>
                             </div>
                         </div>

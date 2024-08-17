@@ -10,6 +10,7 @@ btnAddSchedule.addEventListener("click", function () {
     document.getElementById('endHour').value = "";
     document.getElementById('client').value = "";
     document.getElementById('spaceType').value = "";
+    document.getElementById('rfidCode').value = "";
     document.getElementById("idSchedule").value = null;
     myModal.show()
 })
@@ -25,6 +26,7 @@ btnSaveSchedule.addEventListener("click", function () {
             let endHour = document.getElementById('endHour');
             let client = document.getElementById('client');
             let spaceType = document.getElementById('spaceType');
+            let rfidCode = document.getElementById('rfidCode');
 
             if (startDate.value == '' || endDate.value == '' || startHour.value == '' || endHour == '' || client == '' || spaceType == '') {
                 Swal.fire({
@@ -43,6 +45,7 @@ btnSaveSchedule.addEventListener("click", function () {
             bodyRequest.startHour = startHour.value;
             bodyRequest.endHour = endHour.value;
             bodyRequest.idSpace = spaceType.value;
+            bodyRequest.rfidCode = rfidCode.value;
             console.log("Enviando datos a la api");
             console.log(bodyRequest);
             const url = '/schedule';
@@ -93,6 +96,7 @@ function showModal(boton) {
     let endHour = celdas[4].innerHTML;
     let client = celdas[5].innerHTML;
     let spaceType = celdas[6].innerHTML;
+    let rfidCode = celdas[7].innerHTML;
 
     document.getElementById("idSchedule").value = id;
     document.getElementById('startDate').value = startDate;
@@ -101,6 +105,7 @@ function showModal(boton) {
     document.getElementById('endHour').value = endHour;
     document.getElementById('client').value = client;
     document.getElementById('spaceType').value = spaceType;
+    document.getElementById('rfidCode').value = rfidCode;
 }
 
 function showDeleteModal(boton) {
@@ -171,6 +176,7 @@ async function getUserList() {
                 <td class="" >${schedule.endHour}</td>
                 <td class="" >${schedule.idClient}</td>
                 <td class="" >${schedule.idSpace}</td>
+                <td class="" >${schedule.rfidCode}</td>
                 <td th:id="${'scheduleUpdate-' + schedule.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
                 <td th:id="${'scheduleDelete-' + schedule.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
             </tr>
@@ -180,14 +186,7 @@ async function getUserList() {
     document.getElementById('scheduleTableBody').innerHTML = tableBody;
 }
 
-document.getElementById('client').addEventListener('input', function() {
-    const query = this.value;
-    if (query.length >= 4) {
-        fetchUsers(query);
-    } else {
-        document.getElementById('suggestions').innerHTML = '';
-    }
-});
+
 async function fetchUsers(query) {
     try {
         const response = await fetch(`/completeClientList/${query}`);

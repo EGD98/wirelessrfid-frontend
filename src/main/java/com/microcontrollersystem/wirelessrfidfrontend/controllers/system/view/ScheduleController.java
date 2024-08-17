@@ -38,6 +38,8 @@ public class ScheduleController {
             model.addAttribute("scheduleList",scheduleDataList);
             List<Map<String, Object>> catSpace =  catalogService.getCatalog(tokenRetrieveString, "SPACE_TYPE");
             model.addAttribute("catSpaceType",catSpace);
+            List<Map<String, Object>> catClient =  catalogService.getCatalog(tokenRetrieveString, "CLIENT_TYPE");
+            model.addAttribute("catClient",catClient);
             return "/html/system/scheduleView";
         } catch (Exception e) {
             log.error("Fallo la validacion del token: {}", e.getMessage());

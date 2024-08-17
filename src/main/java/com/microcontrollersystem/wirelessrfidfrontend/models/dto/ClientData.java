@@ -11,10 +11,4 @@ public class ClientData {
     private String lastName;
     private String  phoneNumber;
     private String email;
-    private String rfidCode;
-    private String space;
-    private String  admissionDate;
-    private String  egressDate;
-    private String  admissionTime;
-    private String  egressTime;
 }

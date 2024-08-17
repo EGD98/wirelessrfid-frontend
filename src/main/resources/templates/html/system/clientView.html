@@ -52,12 +52,6 @@
                         <th>Apellido Materno</th>
                         <th>Telefono</th>
                         <th>Correo</th>
-                        <th>Código RFID</th>
-                        <th>Espacio</th>
-                        <th>Fecha de ingreso</th>
-                        <th>Fecha de egreso</th>
-                        <th>Hora de ingreso</th>
-                        <th>Hora de egreso</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -70,12 +64,6 @@
                         <td th:text="${client.lastName}"></td>
                         <td th:text="${client.phoneNumber}"></td>
                         <td th:text="${client.email}"></td>
-                        <td th:text="${client.rfidCode}"></td>
-                        <td th:text="${client.space}"></td>
-                        <td th:text="${client.admissionDate}"></td>
-                        <td th:text="${client.egressDate}"></td>
-                        <td th:text="${client.admissionTime}"></td>
-                        <td th:text="${client.egressTime}"></td>
                         <td th:id="${'clientUpdate-' + client.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
                         <td th:id="${'clientDelete-' + client.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>
                     </tr>
