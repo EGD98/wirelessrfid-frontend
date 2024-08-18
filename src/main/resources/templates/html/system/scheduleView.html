@@ -65,8 +65,8 @@
                             <td th:text="${schedule.endDate}"></td>
                             <td th:text="${schedule.startHour}"></td>
                             <td th:text="${schedule.endHour}"></td>
-                            <td th:text="${schedule.idClient}"></td>
-                            <td th:text="${schedule.idSpace}"></td>
+                            <td th:text="${schedule.clientData.name}"></td>
+                            <td th:text="${schedule.spaceData.roomName}"></td>
                             <td th:text="${schedule.rfidCode}"></td>
                             <td th:id="${'scheduleUpdate-' + schedule.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
                             <td th:id="${'scheduleDelete-' + schedule.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>

@@ -1,4 +1,4 @@
 system-properties:
-  url: "http://localhost/"
+  url: "http://localhost:9000/"
   icon-url: "http://localhost/images/SCM-RFID.ico"
   url-backend: "http://localhost:5000"

@@ -37,14 +37,18 @@ btnSaveSchedule.addEventListener("click", function () {
                 });
                 return false;
             }
+            let clientData = {};
+            let spaceData = {};
             let bodyRequest = {};
             bodyRequest.id = idSchedule.value;
-            bodyRequest.idClient = client.value;
+            clientData.id = client.value;
+            bodyRequest.clientData = clientData;
             bodyRequest.startDate = startDate.value;
             bodyRequest.endDate = endDate.value;
             bodyRequest.startHour = startHour.value;
             bodyRequest.endHour = endHour.value;
-            bodyRequest.idSpace = spaceType.value;
+            spaceData.id = spaceType.value
+            bodyRequest.spaceData = spaceData;
             bodyRequest.rfidCode = rfidCode.value;
             console.log("Enviando datos a la api");
             console.log(bodyRequest);
@@ -174,8 +178,8 @@ async function getUserList() {
                 <td class="" >${schedule.endDate}</td>
                 <td class="" >${schedule.startHour}</td>
                 <td class="" >${schedule.endHour}</td>
-                <td class="" >${schedule.idClient}</td>
-                <td class="" >${schedule.idSpace}</td>
+                <td class="" >${schedule.clientData.name}</td>
+                <td class="" >${schedule.spaceData.roomName}</td>
                 <td class="" >${schedule.rfidCode}</td>
                 <td th:id="${'scheduleUpdate-' + schedule.id}"><button class="btn-info" onclick="showModal(this)" >Editar</button></td>
                 <td th:id="${'scheduleDelete-' + schedule.id}"><button class="btn-danger" onclick="showDeleteModal(this)">Eliminar</button></td>

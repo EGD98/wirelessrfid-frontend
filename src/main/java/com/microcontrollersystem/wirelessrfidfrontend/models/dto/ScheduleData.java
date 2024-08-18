@@ -6,11 +6,11 @@ import lombok.Data;
 public class ScheduleData {
 
     private String id;
-    private String idClient;
+    private ClientData clientData;
     private String startDate;
     private String endDate;
     private String startHour;
     private String endHour;
-    private String idSpace;
+    private SpaceData spaceData;
     private String rfidCode;
 }
